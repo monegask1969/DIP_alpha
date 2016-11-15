@@ -5,10 +5,50 @@
  */
 package st.dog.dip.web.config;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 /**
  *
  * @author moneg
  */
-public class MidtierDispatcherConfig {
-    
+
+    @Configuration
+@ComponentScan({
+        "st.dog.dip.domain",
+        "st.dog.dip.domain.Breeder",
+        "st.dog.dip.domain.Contest",
+        "st.dog.dip.domain.Dog",
+        "st.dog.dip.domain.Dogshow",
+        "st.dog.dip.domain.Expert",
+        "st.dog.dip.domain.Owner",
+        "st.dog.dip.domain.Participant",
+        "st.dog.dip.domain.Ring",
+        "st.dog.dip.domain.config",
+        "st.dog.dip.service",
+        "st.dog.dip.service.Breeder",
+        "st.dog.dip.service.Contest",
+        "st.dog.dip.service.Dog",
+        "st.dog.dip.service.Dogshow",
+        "st.dog.dip.service.Expert",
+        "st.dog.dip.service.Owner",
+        "st.dog.dip.service.Participant",
+        "st.dog.dip.service.Ring",
+        "st.dog.dip.service.config",
+        "st.dog.dip.web.config",
+        "st.dog.dip.web.dogshow"
+})
+@EnableWebMvc
+public class MidtierDispatcherConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+            .addResourceHandler("/layout/*/**")    //где находятся
+            .addResourceLocations("/layout/")
+        ;
+    }
 }
